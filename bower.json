@@ -1,5 +1,5 @@
 {
-  "name": "ourhandsandfeet",
+  "name": "web-jam.com",
   "description": "Navigation-style app with Aurelia and webpack.",
   "main": "\"\"",
   "authors": [
@@ -10,7 +10,7 @@
   "keywords": [
     "\"\""
   ],
-  "homepage": "https://github.com/UltimatePromotions/ourhandsandfeet",
+  "homepage": "https://github.com/WebApps/web-jam-front",
   "private": true,
   "ignore": [
     "**/.*",
