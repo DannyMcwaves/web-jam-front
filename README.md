@@ -17,7 +17,7 @@ Now, open your browser and go to <b>localhost:9000</b>
 
 If all goes well, the webpage should be running correctly.
 
-<b><i>Note</b></i>:  you will not be able to use the "Login" feature of the website unless you also run the back end server.
+<b><i>Note</b></i>: you will not be able to use the "Login" feature of the website unless you also run the back end server.
 
 When working on unit tests, use the command <b>npm run test:debug</b><br>
 This will run the tests in continuous mode and launch a Chrome browser with Karma debugging enabled.
