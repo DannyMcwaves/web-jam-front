@@ -24,8 +24,7 @@ This will run the tests in continuous mode and launch a Chrome browser with Karm
 
 Since we are running some alpha and beta node packages, there will be times when the developer will need to reinstall all dependencies.
 We have found that is can be necessary to delete the entire Node_Modules folder and then clean the cache by running this script:<br>
-<b>npm run cleaninstall</b>
-
+<b>npm run cleaninstall</b><br>
 Before you push new code to GitHub, be sure to run this script:<br>
 <b>npm run installtest</b>
 <br><br>
