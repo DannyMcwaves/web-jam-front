@@ -43,6 +43,7 @@ export class App {
   getTokens(){
     return this.auth.getTokenPayload();
   }
+
   activate() {
     this.appRouterConfig.configure();
     this.configHttpClient();

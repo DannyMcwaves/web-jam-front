@@ -50,3 +50,6 @@ test/coverage
 coverage
 
 .bowerrc
+
+ # IntelliJ junk
+/.idea
