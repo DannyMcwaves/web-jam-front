@@ -42,7 +42,7 @@
     "server": "npm run server:dev",
     "server:dev": "cross-env NODE_ENV=development npm run webpack-dev-server -- --inline --progress --profile --watch",
     "server:dev:hmr": "npm run server:dev -- --hot",
-    "server:prod": "http-server dist --cors",
+    "server:prod": "pushstate-server dist",
     "webpack": "cross-env BABEL_ENV=node ./node_modules/.bin/webpack",
     "webpack-dev-server": "cross-env BABEL_ENV=node ./node_modules/.bin/webpack-dev-server"
   },
@@ -179,6 +179,7 @@
     "http-server": "linuxbozo/http-server",
     "isomorphic-fetch": "2.2.1",
     "jquery": "3.1.1",
+    "pushstate-server": "^3.0.0",
     "vulcanize": "1.15.3",
     "webpack": "2.2.0"
   },
