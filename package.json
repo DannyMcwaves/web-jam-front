@@ -5,13 +5,13 @@
   "main": "dist/main.js",
   "productName": "webjamfront",
   "engines": {
-    "node": "7.7.2",
+    "node": "7.7.3",
     "npm": "4.1.2"
   },
   "scripts": {
     "pretest": "del-cli \"coverage/*\"",
     "installtest": "yarn install && npm test",
-    "cleaninstall": "rm -rf bower_components && rm -rf node_modules && npm i -g yarn && yarn cache clean && yarn install",
+    "cleaninstall": "rm -rf bower_components && rm -rf yarn.lock && rm -rf node_modules && npm i -g yarn && yarn cache clean && yarn install",
     "postinstall": "yarn global add bower && bower install && npm run build:prod",
     "test": "cross-env BABEL_ENV=node NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
     "test:debug": "npm test -- --single-run=false --auto-watch=true --debug",
@@ -80,7 +80,6 @@
       ],
       "includeDependencies": [
         "!aurelia-files",
-        "!http-server",
         "!bower",
         "!vulcanize",
         "!cross-env",
@@ -115,7 +114,8 @@
         "!babel-register",
         "!dotenv",
         "!aurelia-bootstrapper",
-        "!aurelia-testing"
+        "!aurelia-testing",
+        "!pushstate-server"
       ]
     }
   },
@@ -176,7 +176,6 @@
     "dotenv": "^4.0.0",
     "font-awesome": "4.7.0",
     "global": "^4.3.1",
-    "http-server": "linuxbozo/http-server",
     "isomorphic-fetch": "2.2.1",
     "jquery": "3.1.1",
     "pushstate-server": "^3.0.0",
