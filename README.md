@@ -22,6 +22,10 @@ If all goes well, the webpage should be running correctly.
 When working on unit tests, use the command <b>npm run test:debug</b><br>
 This will run the tests in continuous mode and launch a Chrome browser with Karma debugging enabled.
 
+To get the latest version of code, <b>git pull origin dev</b> and then switch to your own branch.
+
+Please do not push your changes directly to the dev branch, rather we would appreciate if you pushed to your own branch and then submit a pull request to the <b>dev</b> branch.
+
 Since we are running some alpha and beta node packages, there will be times when the developer will need to reinstall all dependencies.
 We have found that is can be necessary to delete the entire Node_Modules folder and then clean the cache by running this script:<br>
 <b>npm run cleaninstall</b><br>
