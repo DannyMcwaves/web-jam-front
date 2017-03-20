@@ -1,5 +1,5 @@
-# Web-Jam-App-Front
-[![CircleCI](https://circleci.com/gh/Web-Jam-Salem/Web-Jam-App-Front.svg?style=svg)](https://circleci.com/gh/Web-Jam-Salem/Web-Jam-App-Front)
+# web-jam-front
+[![CircleCI](https://circleci.com/gh/WebJamApps/web-jam-front.svg?style=svg)](https://circleci.com/gh/WebJamApps/web-jam-front)
 
 ## Helping Businesses with Mobile Friendly Websites
 

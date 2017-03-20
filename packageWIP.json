@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Front End of web-jam.com App",
   "main": "dist/main.js",
-  "productName": "web-jam-front",
+  "productName": "webjamfront",
   "engines": {
     "node": "7.7.3",
     "npm": "4.1.2"
@@ -12,7 +12,7 @@
   "scripts": {
     "pretest": "del-cli \"coverage/*\"",
     "installtest": "yarn install && npm test",
-    "cleaninstall": "rm -rf bower_components && rm -rf yarn.lock && rm -rf node_modules && npm i -g yarn && yarn cache clean && yarn install",
+    "cleaninstall": "rm -rf yarn.lock && rm -rf bower_components && rm -rf node_modules && npm i -g yarn && yarn cache clean && yarn install",
     "postinstall": "yarn global add bower && bower install && npm run build:prod",
     "test": "cross-env BABEL_ENV=node NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
     "test:debug": "npm test -- --single-run=false --auto-watch=true --debug",
@@ -38,7 +38,7 @@
     "prebuild:dev": "npm run clean:dist",
     "build:dev": "cross-env NODE_ENV=development npm run webpack -- --progress --profile",
     "prebuild:prod": "npm run clean:dist",
-    "build:prod": "cross-env NODE_ENV=production npm run webpack -- --progress --profile ; vulcanize --inline-scripts --inline-css includes.html > dist/includes.html;mkdir dist/styles;cp -a styles/imgs dist/styles;mkdir dist/bower_components;cp -a bower_components/webcomponentsjs dist/bower_components/",
+    "build:prod": "cross-env NODE_ENV=production npm run webpack -- --progress --profile ; vulcanize --inline-scripts --inline-css includes.html > dist/includes.html;mkdir dist/styles;cp -a styles/imgs dist/styles;mkdir dist/node_modules;cp -a node_modules/webcomponents.js dist/node_modules/",
     "start": "npm run server:dev",
     "server": "npm run server:dev",
     "server:dev": "cross-env NODE_ENV=development npm run webpack-dev-server -- --inline --progress --profile --watch",
@@ -55,7 +55,6 @@
     "aurelia",
     "webpack"
   ],
-  "license": "MIT",
   "author": "",
   "contributors": [
     {
@@ -116,7 +115,11 @@
         "!dotenv",
         "!aurelia-bootstrapper",
         "!aurelia-testing",
-        "!pushstate-server"
+        "!pushstate-server",
+        "!@polymer/polymer",
+        "!@polymer/iron-elements",
+        "!@polymer/paper-elements",
+        "!webcomponents.js"
       ]
     }
   },
@@ -139,6 +142,9 @@
     "@easy-webpack/config-test-coverage-istanbul": "3.2.0",
     "@easy-webpack/config-uglify": "2.2.3",
     "@easy-webpack/core": "2.0.1",
+    "@polymer/iron-elements": "^0.0.3",
+    "@polymer/paper-elements": "^0.0.3",
+    "@polymer/polymer": "^1.2.5-npm-test.2",
     "au-table": "0.1.12",
     "aurelia-auth": "3.0.5",
     "aurelia-bootstrapper": "2.0.1",
@@ -181,6 +187,8 @@
     "jquery": "3.1.1",
     "pushstate-server": "^3.0.0",
     "vulcanize": "1.15.3",
+    "web-animations-js": "^2.2.2",
+    "webcomponents.js": "^0.7.24",
     "webpack": "2.2.0"
   },
   "devDependencies": {
