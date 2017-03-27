@@ -4,7 +4,7 @@ import {Router} from 'aurelia-router';
 import {inject} from 'aurelia-framework';
 
 @inject(Router)
-export class Samples {
+export class News {
   
   constructor(router) {
     this.router = router;
