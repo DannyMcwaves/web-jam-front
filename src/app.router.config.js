@@ -2,7 +2,7 @@ import {AuthorizeStep} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 
-@inject(Router)
+@inject(Router, AuthorizeStep)
 export class AppRouterConfig{
   constructor(router){
     this.router = router;
@@ -14,9 +14,11 @@ export class AppRouterConfig{
       config.options.root = '/';
       config.addPipelineStep('authorize', AuthorizeStep);//Is the actually Authorization. Prevents users from certain sites when not authorized.
       config.map([
-        { route: ['', 'home'], name: 'home', moduleId: './home', nav: true, title: 'Home' },
-        { route: 'samples', name: 'samples', moduleId: './samples', nav: true, title: 'Samples' },
-        { route: 'band', name: 'band-router', moduleId: './band-router', nav: true, title: 'Band' }
+        { route: ['', 'home'], name: 'home', moduleId: './home', nav: true, title: 'Home', settings: 'fa fa-home' },
+        { route: 'news', name: 'news', moduleId: './news', nav: true, title: 'News', settings: 'fa fa-file-text-o' },
+        { route: 'login', name: 'login', moduleId: './login', nav: false, title: 'Login', settings: 'fa fa-sign-in'},
+        { route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true, settings: 'fa fa-tachometer'},
+        { route: 'band', name: 'band-router', moduleId: './band-router', nav: true, title: 'Band', settings: 'fa fa-music' }
         // { route: 'bookshelf', name: 'bookshelf', moduleId: './bookshelf', nav: true, title: 'Bookshelf'},
         // { route: 'login', name: 'login', moduleId: './login', nav: false, title: 'Login'},
         // { route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true}
