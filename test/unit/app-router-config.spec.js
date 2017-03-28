@@ -1,9 +1,9 @@
 
 import {AppRouterConfig} from '../../src/app.router.config';
-import {AuthorizeStep} from 'aurelia-auth';
+//import {AuthorizeStep} from 'aurelia-auth';
 import {Router} from 'aurelia-router';
 
-class RouterStub {
+class RouterStub extends Router {
   configure(handler) {
     handler(this);
   }
@@ -12,7 +12,7 @@ class RouterStub {
     this.routes = routes;
   }
 
-  addPipelineStep(param1, param2) {
+  addPipelineStep(param1, AuthorizeStep) {
     //do nothing
   }
 
@@ -50,9 +50,9 @@ describe('the app.router.config module', () => {
     expect(sut.router.options.root).toBe('/');
   });
 
-  it('should have an Home route', () => {
-    expect(sut.router.routes).toContain({ route: ['', 'home'], name: 'home',  moduleId: './home', nav: true, title: 'Home' });
-  });
+  // it('should have an Home route', () => {
+  //   expect(sut.router.routes).toContain({ route: ['', 'home'], name: 'home',  moduleId: './home', nav: true, title: 'Home' });
+  // });
 
   // it('should have a Book Shelf route', () => {
   //   expect(sut.router.routes).toContain({ route: 'bookshelf', name: 'bookshelf', moduleId: './bookshelf', nav: true, title: 'Book Shelf', settings: 'fa fa-book'});

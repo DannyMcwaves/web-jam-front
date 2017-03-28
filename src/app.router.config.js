@@ -2,7 +2,7 @@ import {AuthorizeStep} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 
-@inject(Router)
+@inject(Router, AuthorizeStep)
 export class AppRouterConfig{
   constructor(router){
     this.router = router;
