@@ -348,6 +348,9 @@ section.au-enter-active {
   background-color: #c0c0c0;
   width: 210px;
 }
+.style-scope paper-header-panel {
+  /* z-index: -1; */
+}
 
 .search-table-outer {
   overflow-x: auto;
@@ -375,4 +378,8 @@ section.au-enter-active {
 
 paper-material.material-header x-scope paper-material-0 {
   background-color: #c0c0c0;
+}
+
+.spaceUnderSlideShow {
+  margin-top: auto;
 }
