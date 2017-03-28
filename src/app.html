@@ -6,11 +6,11 @@
           <paper-card image="../styles/imgs/webjamlogo1.png" style="width:180px; border:0">
           </paper-card>    
         </paper-material>
-        <div style="background-color: #c0c0c0;padding-top:32px; margin-left:40px;">
+        <div style="background-color: #c0c0c0;padding-top:32px; margin-left:10px;">
           <paper-item  repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
             <a paper-drawer-toggle style="display:block" href.bind="row.href" class="navlink">
             <span class="${row.settings}"></span>
-            &nbsp;${row.title}
+            &nbsp;&nbsp;&nbsp;${row.title}
             <!-- <span if.bind="fullmenu">&nbsp;${row.title}</span> -->
           </a>
           </paper-item>
@@ -28,6 +28,6 @@
         <router-view></router-view>
       </paper-header-panel>
     </paper-drawer-panel>
-    <nav-bar router.bind="router"></nav-bar>
+    <!-- <nav-bar router.bind="router"></nav-bar> -->
   </div>
 </template>
