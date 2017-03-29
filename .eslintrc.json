@@ -4,7 +4,8 @@
   "rules": {
     "space-before-function-paren": [0, "never"],
     "space-before-blocks": [ 0, "never"],
-    "no-trailing-spaces": [ 1, {"skipBlankLines" : true}]
+    "no-trailing-spaces": [ 1, {"skipBlankLines" : true}],
+    "no-console": [0, "never"]
   }
   
 }
