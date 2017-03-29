@@ -1,4 +1,3 @@
-
 machine:
   node:
     version: 7.7.3
@@ -9,3 +8,12 @@ dependencies:
 general:
   artifacts:
     - ./coverage
+deployment:
+  master:
+    branch: master
+    commands:
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/master?circle-token=$TRIGGER_TOKEN
+  dev:
+    branch: dev
+    commands:
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/dev?circle-token=$TRIGGER_TOKEN
