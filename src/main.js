@@ -15,6 +15,7 @@ export async function configure(aurelia) {
     aurelia.use
     .standardConfiguration()
     .developmentLogging();
+    //.feature('components');
     aurelia.use.plugin('aurelia-polymer');
     aurelia.use.plugin('aurelia-auth', (baseConfig)=>{
       baseConfig.configure(config);
@@ -33,13 +34,8 @@ export async function configure(aurelia) {
     aurelia.use.plugin('aurelia-auth', (baseConfig)=>{
       baseConfig.configure(config);
     });
-    await aurelia.start();
-    aurelia.setRoot('app');
+    document.addEventListener('WebComponentsReady', function() {
+      aurelia.start().then(() => aurelia.setRoot('app'));
+    });
   }
-  // if you would like your website to work offline (Service Worker),
-  // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:
-  /*
-  const offline = await System.import('offline-plugin/runtime');
-  offline.install();
-  */
 }

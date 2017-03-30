@@ -31,6 +31,4 @@ export class AppState {
   setRoles(input){
     this.roles = input;
   }
-  
-  
 }

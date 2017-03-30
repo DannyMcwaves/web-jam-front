@@ -27,6 +27,7 @@ export class UserAccess {
           return next();
         }
       }
+      
       //log.warning('not authorized');
       console.log('I should be rejecting access by the time I get here');
       return next.cancel();
