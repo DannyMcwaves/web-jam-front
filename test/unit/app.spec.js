@@ -31,34 +31,34 @@ class AuthStub {
   }
 }
 
-// class AuthStub2 {
-//   setToken(token) {
-//     this.token = token;
-//   }
-//   logout(data) {
-//     //Logout
-//     const response = 'user logged out';
-//     return new Promise((resolve)=>{
-//       resolve({json: ()=>response});
-//     });
-//   }
-//   getMe() {
-//     const response = 'This is user data';
-//     return new Promise((resolve)=>{
-//       resolve({json: ()=>response});
-//     });
-//   }
-//   getTokenPayload() {
-//     const response = this.token;
-//     return new Promise((resolve)=>{
-//       resolve({json: ()=>response});
-//     });
-//   }
-//   isAuthenticated() {
-//     this.authenticated = false;
-//     return this.authenticated;
-//   }
-// }
+class AuthStub2 {
+  setToken(token) {
+    this.token = token;
+  }
+  logout(data) {
+    //Logout
+    const response = 'user logged out';
+    return new Promise((resolve)=>{
+      resolve({json: ()=>response});
+    });
+  }
+  getMe() {
+    const response = 'This is user data';
+    return new Promise((resolve)=>{
+      resolve({json: ()=>response});
+    });
+  }
+  getTokenPayload() {
+    const response = this.token;
+    return new Promise((resolve)=>{
+      resolve({json: ()=>response});
+    });
+  }
+  isAuthenticated() {
+    this.authenticated = false;
+    return this.authenticated;
+  }
+}
 
 class RouterStub {
   configure() {
@@ -78,17 +78,17 @@ class HttpStub {
 
 describe('the App module', () => {
   let app1;
-  //let app2;
+  let app2;
   beforeEach(() => {
     app1 = new App(null, null, new AuthStub, new RouterStub, new HttpStub, new AppState);
     app1.auth.setToken('No token');
-    //app2 = new App(null, null, new AuthStub2(), new RouterStub(), new HttpStub());
+    app2 = new App(null, null, new AuthStub2, new RouterStub, new HttpStub, new AppState);
   });
   // it('should set user id as undefined from getUser function when not authenticated', ()=> {
   //   app2.getUser();
   //   expect(app2.uid).toBe(undefined);
   // });
-
+  
   it('tests configHttpClient', (done) => {
     const { add: ok } = new Counter(2, done);
     app1.auth.tokenInterceptor = 'tokenInterceptor';
@@ -106,11 +106,34 @@ describe('the App module', () => {
       }
     })());
   });
-
+  
   it('tests logout', () => {
     //console.log(app1);
     app1.activate();
     app1.logout();
     expect(app1.authenticated).toBe(false);
+  });
+  
+  it('should get widescreen', () => {
+    //console.log(app1);
+    const app3 = new App(null, null, new AuthStub, new RouterStub, new HttpStub, new AppState);
+    expect(app3.widescreen).toBe(true);
+  });
+  
+  it('should toggle menu to be icons only', () => {
+    app2.activate();
+    app2.fullmenu = true;
+    //console.log(app1);
+    app2.togglemenu();
+    expect(app2.fullmenu).toBe(false);
+    expect(app2.drawerWidth).toBe('50px');
+  });
+  
+  it('should toggle menu to be icons with text', () => {
+    app1.fullmenu = false;
+    //console.log(app1);
+    app1.togglemenu();
+    expect(app1.fullmenu).toBe(true);
+    expect(app1.drawerWidth).toBe('175px');
   });
 });
