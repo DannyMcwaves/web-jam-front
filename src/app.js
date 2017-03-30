@@ -54,9 +54,10 @@ export class App {
     this.auth.logout('/');
   }
   
-  getTokens(){
-    return this.auth.getTokenPayload();
-  }
+  // getTokens(){
+  //   return this.auth.getTokenPayload();
+  // }
+  //
   
   activate() {
     this.appRouterConfig.configure();
@@ -65,6 +66,8 @@ export class App {
       this.authenticated = true;
       this.appState.setAuth(true);
       this.appState.setRoles(['dashboard']);
+    } else {
+      this.authenticated = false;
     }
   }
   
