@@ -6,15 +6,41 @@
           <paper-card if.bind="fullmenu" image="../styles/imgs/webjamlogo1.png" style="width:180px; border:0">
           </paper-card>    
         </paper-material>
-        <div style="background-color: #c0c0c0;padding-top:5px; margin-left:2px;">
+        <div style="background-color: #c0c0c0;padding-top:5px; margin:0;">
           <paper-item if.bind="widescreen">
             <i class="fa fa-bars pull-left fa-1x" click.delegate="togglemenu()"></i>
           </paper-item>
-          <paper-item repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          
+          <paper-item if.bind="!authenticated" style="background-color: #c09580">
+            <a paper-drawer-toggle style="display:block" href="/login" class="navlink">
+              <span class="fa fa-sign-in"></span>
+              <span if.bind="fullmenu">&nbsp;Login</span>
+            </a>
+          </paper-item>
+          
+          <paper-item if.bind="authenticated" style="background-color: #c09580">
+            <a paper-drawer-toggle style="display:block" href="/dashboard" class="navlink">
+              <span class="fa fa-tachometer"></span>
+              <span if.bind="fullmenu">&nbsp;Dashboard</span>
+            </a>
+          </paper-item>
+          
+          <paper-item style="padding-right:0" repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
             <a paper-drawer-toggle style="display:block" href.bind="row.href" class="navlink">
               <span class="${row.settings}"></span>
-              <span if.bind="fullmenu">&nbsp;&nbsp;&nbsp;${row.title}</span>
+              <span if.bind="fullmenu" style="padding-right:0; margin-right:0">&nbsp;${row.title}</span>
             </a>
+          </paper-item>
+
+          
+          <paper-item if.bind="authenticated" style="background-color: #c09580">
+            <a paper-drawer-toggle style="display:block; color:#0275d8" click.delegate="logout()" class="navlink">
+              <span class="fa fa-sign-out"></span>
+            </a>
+            <span if.bind="fullmenu">&nbsp;</span>
+            <button if.bind="fullmenu" click.delegate="logout()" class="material-content-button">
+              Logout
+            </button>
           </paper-item>
         </div>
       </paper-header-panel>
@@ -22,7 +48,7 @@
         <paper-material class="material-header" elevation="0">
           <paper-card alt="web-jam-icon" image="../styles/imgs/webjamicon7.png" style="width:80px; background-color:#2a222a">
           </paper-card> 
-          <paper-card  style="background-color:#2a222a;top:-30px;left:10px;text-align:center;">
+          <paper-card  style="background-color:#2a222a;top:-30px;left:5px;text-align:center;">
             <h3 style="color: white">Web Jam LLC</h3>
           </paper-card>
         </paper-material>
