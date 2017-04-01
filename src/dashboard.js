@@ -14,28 +14,28 @@ export class Dashboard {
     this.httpClient = httpClient;
     this.router = router;
     this.appState = appState;
+    this.backend = '';
   }
-  
+
   //authenticated=false;
   //firstTimeInfo = false;
   types=['Charity', 'Volunteer', 'Developer'];
-  
+
   async activate(){
-    let backend = '';
     if (process.env.NODE_ENV !== 'production'){
-      backend = process.env.BackendUrl;
+      this.backend = process.env.BackendUrl;
     }
     await fetch;
     //if (process.env.NODE_ENV !== 'production'){
     this.httpClient.configure(config => {
       config
       .useStandardConfiguration()
-      .withBaseUrl(backend);
+      .withBaseUrl(this.backend);
     });
     //}
     this.getUser();
   }
-  
+
   getUser(){
     this.authenticated = this.auth.isAuthenticated();
     let uid = this.auth.getTokenPayload().sub;
@@ -44,8 +44,8 @@ export class Dashboard {
     .then(data => {
       let user = data;
       this.appState.setUser(user);
-      console.log('In get user');
-      console.log(this.appState.getUser());
+      //console.log('In get user');
+      //console.log(this.appState.getUser());
       //this.firstTimeInfo = this.configured();
       if (user.userType === 'Charity'){
         //this.user.userType = 1;
@@ -61,7 +61,7 @@ export class Dashboard {
       }
     });
   }
-  
+
   updateUser(){
     let uid = this.auth.getTokenPayload().sub;
     //let tempUserType = this.user.userType;
@@ -77,7 +77,7 @@ export class Dashboard {
       this.getUser();
     });
   }
-  
+
   // configured(){
   //   let returnVal = false;
   //   if (!('userType' in this.user)){
