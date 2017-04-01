@@ -50,13 +50,13 @@ export class Dashboard {
       if (user.userType === 'Charity'){
         //this.user.userType = 1;
         this.appState.setRoles(['charity', 'developer']);
-        this.router.navigate('charity');
+        this.router.navigate('ohaf');
       } else if (user.userType === 'Volunteer'){
         //this.user.userType = 2;
         this.appState.setRoles(['volunteer']);
-        this.router.navigate('volunteer');
+        this.router.navigate('ohaf');
       } else if (user.userType === 'Developer'){
-        this.appState.setRoles(['developers']);
+        this.appState.setRoles(['developer', 'charity', 'volunteer']);
         this.router.navigate('developer');
       }
     });
