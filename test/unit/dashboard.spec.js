@@ -1,6 +1,40 @@
 import {Dashboard} from '../../src/dashboard';
 import {StageComponent} from 'aurelia-testing';
+import {AppState} from '../../src/classes/AppState.js';
 const Counter = require('assertions-counter');
+
+class AppStateMock {
+  constructor(){
+    this.user = {};
+    this.is_auth = false;
+    this.roles = [];
+  }
+
+  getUser(){
+    // this.user = {name: 'Iddris Elba', userType: 'Volunteer'};
+    return this.user;
+  }
+  setUser(input){
+    this.user = input;
+  }
+
+  getAuth(){
+    return (this.is_auth);
+  }
+
+  setAuth(input){
+    this.is_auth = input;
+  }
+
+  getRoles(){
+    return (this.roles);
+  }
+
+  setRoles(input){
+    this.roles = input;
+  }
+}
+
 
 class HttpStub {
   fetch(fn) {
@@ -45,7 +79,7 @@ class HttpMock {
 class AuthServiceMock {
   // basic auth functions.
   authenticated = false;
-  
+
   isAuthenticated() {
     return this.authenticated;
   }
@@ -74,7 +108,7 @@ class RouterMock {
 describe('the Dashboard Module', () => {
   let dashboard;
   let dashboard2;
-  
+
   describe('Dashboard DI', () => {
     let auth;
     let http;
@@ -82,11 +116,12 @@ describe('the Dashboard Module', () => {
     beforeEach(() => {
       auth = new AuthServiceMock();
       http = new HttpMock();
-      dashboard = new Dashboard(auth, http, null, new RouterMock);
-      dashboard2 = new Dashboard(auth, new HttpStub, null, new RouterMock, null);
+      dashboard = new Dashboard(auth, http, null, new RouterMock, new AppStateMock);
+      dashboard2 = new Dashboard(auth, new HttpStub, null, new RouterMock, new AppStateMock);
+      // process.env.NODE_ENV = 'development';
       auth.setToken(token);
     });
-    
+
     it('should authenticate and return feedback', done =>{
       dashboard.auth.authenticate().then(data => {
         expect(data).toContain('authenticated');
@@ -95,12 +130,12 @@ describe('the Dashboard Module', () => {
       });
       done();
     });
-    
+
     it('should check if the user is authenticated', done => {
       expect(dashboard.auth.isAuthenticated()).toBeTruthy();
       done();
     });
-    
+
     it('should fetch some json data after api call', done => {
       dashboard.httpClient.fetch('/some/data').then(data => {
         expect(data).toBeDefined(); // check if the data is defined.
@@ -110,17 +145,26 @@ describe('the Dashboard Module', () => {
       });
       done();
     });
-    
+
     it('should expect change in http status after getUser call', done => {
       dashboard.getUser();
       expect(http.status).toBe(200);
       done();
     });
-    
+
+    //TODO: Get this to work!! process.env.NODE_ENV is not recognized
+    // it('should set backend to a blank string if NODE_ENV is production', done => {
+    //   http = new HttpMock({name: 'Iddris Elba', userType: 'Volunteer'});
+    //   auth = new AuthServiceMock();
+    //   process.env.NODE_ENV = 'production';
+    //   dashboard = new Dashboard(auth, http, null, new RouterMock, new AppStateMock);
+    //   expect(dashboard.backend).toBe('');
+    // });
+
     it('should expect change in http status after Volunteer activate call', done => {
       http = new HttpMock({name: 'Iddris Elba', userType: 'Volunteer'});
       auth = new AuthServiceMock();
-      dashboard = new Dashboard(auth, http, null, new RouterMock);
+      dashboard = new Dashboard(auth, http, null, new RouterMock, new AppStateMock);
       auth.setToken(token);
       dashboard.activate();
       setTimeout(function() {
@@ -128,11 +172,11 @@ describe('the Dashboard Module', () => {
         done();
       }, 10);
     });
-    
+
     it('should expect change in http status after Developer activate call', done => {
       http = new HttpMock({name: 'John Fitzgerald', userType: 'Developer'});
       auth = new AuthServiceMock();
-      dashboard = new Dashboard(auth, http, null, new RouterMock);
+      dashboard = new Dashboard(auth, http, null, new RouterMock, new AppStateMock);
       auth.setToken(token);
       dashboard.activate();
       setTimeout(function() {
@@ -140,16 +184,23 @@ describe('the Dashboard Module', () => {
         done();
       }, 10);
     });
-    
-    // it('should confirm 200 http status after updateUser call', done => {
-    //   dashboard.getUser();
-    //   setTimeout(function() {
-    //     dashboard.updateUser();
-    //     expect(http.status).toBe(200);
-    //     done();
-    //   }, 5);
-    // });
-    //
+
+    it('should confirm 200 http status after updateUser call', done => {
+      http = new HttpMock({name: 'John Fitzgerald', userType: 'Developer'});
+      auth = new AuthServiceMock();
+      let appstate;
+      appstate = new AppStateMock();
+      appstate.user = {name: 'John Fitzgerald', userType: 'Developer'};
+      dashboard = new Dashboard(auth, http, null, new RouterMock, appstate);
+      dashboard.user = {name: 'John Fitzgerald', userType: 'Developer'};
+      dashboard.getUser();
+      setTimeout(function() {
+        dashboard.updateUser();
+        expect(http.status).toBe(200);
+        done();
+      }, 5);
+    });
+
     it('tests configHttpClient', (done) => {
       const { add: ok } = new Counter(2, done);
       dashboard2.activate().then(() => {
@@ -166,14 +217,20 @@ describe('the Dashboard Module', () => {
         })());
       });
     });
-    
+
     it('should confirm route by returning the currently navigated route', done => {
       expect(dashboard.router.navigate(dashboard.types[0])).toBe('Charity');
       expect(dashboard.router.navigate(dashboard.types[1])).toBe('Volunteer');
       done();
     });
+
+    // afterEach(() => {
+    //   delete process.env.NODE_ENV;
+    // });
   });
-  
+
+  //TODO: Mock environment for being production, test it, and run activate function
+
   describe('Staging Dashboard', () => {
     beforeEach(() => {
       dashboard = StageComponent
