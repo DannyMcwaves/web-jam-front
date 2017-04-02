@@ -12,8 +12,10 @@ deployment:
   master:
     branch: master
     commands:
-      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/master?circle-token=$TRIGGER_TOKEN -d '{"build_parameters":{"no-cache":true}}'
+      - curl -v -X DELETE https://circleci.com/api/v1.1/project/WebJamApps/web-jam-back/build-cache?circle-token=$TRIGGER_TOKEN
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/master?circle-token=$TRIGGER_TOKEN -H "Content-Type: application/json" -d '{"build_parameters":{"no-cache":true}}'
   dev:
     branch: dev
     commands:
-      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/dev?circle-token=$TRIGGER_TOKEN -d '{"build_parameters":{"no-cache":true}}'
+      - curl -v -X DELETE https://circleci.com/api/v1.1/project/WebJamApps/web-jam-back/build-cache?circle-token=$TRIGGER_TOKEN
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/dev?circle-token=$TRIGGER_TOKEN -H "Content-Type: application/json" -d '{"build_parameters":{"no-cache":true}}'
