@@ -12,8 +12,8 @@ deployment:
   master:
     branch: master
     commands:
-      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/master?circle-token=$TRIGGER_TOKEN -d '{"no-cache":true}'
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/master?circle-token=$TRIGGER_TOKEN -d '{"build_parameters":{"no-cache":true}}'
   dev:
     branch: dev
     commands:
-      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/dev?circle-token=$TRIGGER_TOKEN -d '{"no-cache":true}'
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/web-jam-back/tree/dev?circle-token=$TRIGGER_TOKEN -d '{"build_parameters":{"no-cache":true}}'
