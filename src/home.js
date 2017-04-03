@@ -14,7 +14,7 @@ export class Home {
     let iswidescreen = false;
     let currentscreenwidth = document.documentElement.clientWidth;
     /* istanbul ignore else */
-    if (currentscreenwidth > 885){
+    if (currentscreenwidth > 1170){
       iswidescreen = true;
       //this.columnWidth = '450px';
     } //else {
