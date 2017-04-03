@@ -1,5 +1,6 @@
 <template>
   <div class="page-content">
+    <div style="float: right; width: 500px" if.bind = "widescreen">
     <paper-material elevation="0">
       <polymer-slideshow>
       <polymer-slide>
@@ -7,7 +8,17 @@
       </polymer-slide>
     </polymer-slideshow>
   </paper-material>
-  
+</div>
+
+  <div if.bind = "!widescreen">
+  <paper-material elevation="0">
+    <polymer-slideshow>
+    <polymer-slide>
+      <paper-card class="slideshowimage" image="../styles/imgs/banner1.jpg"></paper-card>
+    </polymer-slide>
+  </polymer-slideshow>
+</paper-material>
+</div>
       <!-- The dimensions of the images are 950x300 -->
       
       <!-- <polymer-slide>
@@ -51,8 +62,10 @@
 
 <!-- <h1 class="material-content-h1">About Web Jam LLC</h1> -->
   <paper-material class="material-content" elevation="0">
-<p style="margin-top:16%">Web Jam LLC helps businesses bring their websites into the 21st century! Let us 
+<p if.bind = "!widescreen" style="margin-top:16%">Web Jam LLC helps businesses bring their websites into the 21st century! Let us 
   help make your website mobile friendly for a fast pace new world.</p>
+  <p if.bind = "widescreen" style="margin-top:25px; margin-bottom:126px; margin-right:10px; width:500px">Web Jam LLC helps businesses bring their websites into the 21st century! Let us 
+    help make your website mobile friendly for a fast pace new world.</p>
   <!-- <p class="material-content-p">Web Jam LLC was started in the January of 2017. It grew out of a desire to give back to the community and a need to find appropriate opportunities to
   give of time and talents. Web Jam LLC is still under development by a diverse team of dedicated programmers using cutting edge web technologies. Keep checking back to see what new
   features we have created! If you are interested in joining us in creating this awesome app, please contact us at
