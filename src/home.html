@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <div style="float: right; width: 500px" if.bind = "widescreen">
+    <div style="float: right; width: 800px; margin:auto; z-index:1000000" if.bind = "widescreen">
     <paper-material elevation="0">
       <polymer-slideshow>
       <polymer-slide>
@@ -61,18 +61,19 @@
 <!-- <div class="paper-card-img"><paper-card image="../styles/imgs/aboutgraphic.png"></paper-card></div> -->
 
 <!-- <h1 class="material-content-h1">About Web Jam LLC</h1> -->
+<div>
   <paper-material class="material-content" elevation="0">
 <p if.bind = "!widescreen" style="margin-top:16%">Web Jam LLC helps businesses bring their websites into the 21st century! Let us 
   help make your website mobile friendly for a fast pace new world.</p>
-  <p if.bind = "widescreen" style="margin-top:25px; margin-bottom:126px; margin-right:10px; width:500px">Web Jam LLC helps businesses bring their websites into the 21st century! Let us 
+  <p if.bind = "widescreen" style="margin-top:50px; margin-bottom:60px; margin-right:15px; width:640px">Web Jam LLC helps businesses bring their websites into the 21st century! Let us 
     help make your website mobile friendly for a fast pace new world.</p>
   <!-- <p class="material-content-p">Web Jam LLC was started in the January of 2017. It grew out of a desire to give back to the community and a need to find appropriate opportunities to
   give of time and talents. Web Jam LLC is still under development by a diverse team of dedicated programmers using cutting edge web technologies. Keep checking back to see what new
   features we have created! If you are interested in joining us in creating this awesome app, please contact us at
   <a style="text-decoration: underline;" href="mailto:Web Jam LLCmain@gmail.com"><strong>Web Jam LLCMain@gmail.com</strong></a>; we are always on the lookout for talented
   individuals. If you have more money than time to give, we also accept contributions!</p> -->
-</paper-material>
-<paper-material class="material-content-faq" elevation="2">
+
+
   <p style="font-size:18px"><b><i>Q:</i></b> How can I contact you?</p>
   <p style="font-size:18px"><b><i>A:</i></b> Email Josh & Maria Sherman at 
     <a style="text-decoration: underline;font-size:18px" href="mailto:web.jam.adm@gmail.com"><strong>web.jam.adm@gmail.com</strong></a>
@@ -91,5 +92,6 @@
     <a href="https://plus.google.com/u/1/109586499331294076292"><i class="fa fa-google-plus-square fa-4x" aria-hidden="true"></i></a>
   </div>
 </paper-material>
+</div>
 </div>
 </template>
