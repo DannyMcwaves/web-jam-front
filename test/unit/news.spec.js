@@ -1,4 +1,4 @@
-//import {News} from '../../src/news';
+import {News} from '../../src/news';
 import {Router} from 'aurelia-router';
 import {AppRouterConfig} from '../../src/app.router.config';
 
