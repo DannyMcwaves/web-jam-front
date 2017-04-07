@@ -1,2 +1,2 @@
-export class Ohaf {
+export class Developer {
 }

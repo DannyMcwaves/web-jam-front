@@ -1,6 +1,6 @@
 
-export class OhafRouter {
-  heading = 'OHAF Router';
+export class DeveloperRouter {
+  heading = 'Developer Router';
   configureRouter(config, router) {
     config.map([
       { route: '', name: 'developer', moduleId: './developer', nav: true, title: 'Developer', auth: true},
