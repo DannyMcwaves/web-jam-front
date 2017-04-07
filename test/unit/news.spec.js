@@ -23,7 +23,9 @@ class RouterStub extends Router {
   // currentInstruction() {
   //   return config.title = 'howdy';
   // }
-  
+
+  currentInstruction = { config: { title: 'Howdy is cool' } }
+
   configure(handler) {
     // let currentInstruction;
     // let title;
@@ -34,19 +36,19 @@ class RouterStub extends Router {
     // currentInstruction.config.title = 'howdy';
     handler(this);
   }
-  
+
   getRoute() {
     return this.router.currentInstruction.config.title; //name of the route
   }
-  
+
   map(routes) {
     this.routes = routes;
   }
-  
+
   addPipelineStep(param1, AuthorizeStep) {
     //do nothing
   }
-  
+
   options() {
     //do nothing
   }
@@ -58,6 +60,8 @@ describe('the News module', () => {
   let mockedRouter;
   let sut;
   let config1;
+  let news1;
+
   beforeEach(() => {
     mockedRouter = new RouterStub();
     sut = new AppRouterConfig(mockedRouter);
@@ -67,15 +71,18 @@ describe('the News module', () => {
       { route: 'volunteer', name: 'volunteer', moduleId: './dashboard-routes/volunteer-dashboard', nav: false, title: 'Volunteer', auth: true},
       { route: 'charity', name: 'charity', moduleId: './dashboard-routes/charity-dashboard', nav: false, title: 'Charity', auth: true},
       { route: 'library', name: 'library', moduleId: './dashboard-routes/store-manager-dashboard-router', nav: false, title: 'Store', auth: true}
-      
+
     ]);
     sut.configure(config1, mockedRouter);
-    //news1 = new News(mockedRouter);
+    news1 = new News(mockedRouter);
   });
-  
-  it('will attach', () => {
+
+  it('will attach', (done) => {
     //mockedRouter.getRoute();
-    //news1.attached();
+    news1.attached();
     //TODO expect something useful
+    console.log(news1.title);
+    expect(news1.title).toBe("Howdy is cool");
+    done();
   });
 });
